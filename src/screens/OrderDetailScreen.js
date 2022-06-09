@@ -37,7 +37,7 @@ const OrderDetailScreen = () => {
         ListHeaderComponent={() => <OrderDetailHeader order={order} />}
         data={order.dishes}
         renderItem={({ item }) => <OrderItem dish={item} />}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator="false"
       />
       <Ionicons
