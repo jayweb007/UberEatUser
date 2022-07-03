@@ -9,6 +9,7 @@ import BasketScreen from "../screens/BasketScreen";
 import DishDetailScreen from "../screens/DishDetailScreen";
 import OrderDetailScreen from "../screens/OrderDetailScreen";
 import { useAuthContext } from "../contexts/AuthContext";
+import OrderDetailsNavigator from "./OrderDetailsNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -93,12 +94,12 @@ const OrderStack = createNativeStackNavigator();
 const OrderStacks = () => {
   return (
     <OrderStack.Navigator>
-      <OrderStack.Screen name="Your Orders" component={OrderScreen} />
+      <OrderStack.Screen name="Orders" component={OrderScreen} />
       <OrderStack.Screen
         name="Order Details"
-        component={OrderDetailScreen}
+        component={OrderDetailsNavigator}
         options={{
-          headerShown: false,
+          headerShown: true,
         }}
       />
     </OrderStack.Navigator>

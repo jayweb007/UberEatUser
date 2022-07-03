@@ -1,5 +1,94 @@
 export const schema = {
     "models": {
+        "Driver": {
+            "name": "Driver",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "sub": {
+                    "name": "sub",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lat": {
+                    "name": "lat",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lng": {
+                    "name": "lng",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "transportationMode": {
+                    "name": "transportationMode",
+                    "isArray": false,
+                    "type": {
+                        "enum": "TransportationMode"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Drivers",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Basket": {
             "name": "Basket",
             "fields": {
@@ -447,6 +536,20 @@ export const schema = {
                         "targetName": "orderRestaurantId"
                     }
                 },
+                "Driver": {
+                    "name": "Driver",
+                    "isArray": false,
+                    "type": {
+                        "model": "Driver"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "orderDriverId"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -465,6 +568,13 @@ export const schema = {
                 },
                 "orderRestaurantId": {
                     "name": "orderRestaurantId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "orderDriverId": {
+                    "name": "orderDriverId",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
@@ -765,17 +875,25 @@ export const schema = {
         }
     },
     "enums": {
+        "TransportationMode": {
+            "name": "TransportationMode",
+            "values": [
+                "CAR",
+                "BIKE"
+            ]
+        },
         "OrderStatus": {
             "name": "OrderStatus",
             "values": [
                 "NEW",
-                "COOKING",
+                "ACCEPTED",
                 "READY_FOR_PICKUP",
                 "PICKED_UP",
-                "COMPLETED"
+                "COMPLETED",
+                "COOKING"
             ]
         }
     },
     "nonModels": {},
-    "version": "6225a2c697c8242260c9d02979ce70c0"
+    "version": "1d9ccca08adeb9af123967db5d5d77d7"
 };

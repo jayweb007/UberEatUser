@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { DataStore } from "aws-amplify";
-import { Order, OrderDish, Basket } from "../../src/models";
+import { Order, OrderDish } from "../../src/models";
 import { useBasketContext } from "./BasketContext";
 import { useAuthContext } from "./AuthContext";
 
@@ -44,6 +44,8 @@ const OrderContextProvider = ({ children }) => {
     await DataStore.delete(basket);
 
     setOrders([...orders, newOrder]);
+
+    return newOrder;
   };
 
   const getOrder = async (id) => {

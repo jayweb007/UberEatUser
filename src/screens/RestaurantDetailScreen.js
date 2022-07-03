@@ -67,7 +67,7 @@ const RestaurantDetailScreen = () => {
         data={dishes}
         renderItem={({ item }) => <MenuItem dish={item} />}
         keyExtractor={(item) => item.name}
-        showsVerticalScrollIndicator="false"
+        showsVerticalScrollIndicator={false}
       />
       <Ionicons
         onPress={() => navigation.goBack()}

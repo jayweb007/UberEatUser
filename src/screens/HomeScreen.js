@@ -30,7 +30,7 @@ const HomeScreen = () => {
       data={restaurants}
       renderItem={({ item }) => <RestaurantItem restaurant={item} />}
       keyExtractor={(item) => item.id}
-      showsVerticalScrollIndicator="false"
+      showsVerticalScrollIndicator={false}
     />
   );
 };

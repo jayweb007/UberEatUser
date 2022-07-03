@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, FlatList, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 import OrderItem from "../components/OrderItem";
 import OrderDetailHeader from "../components/OrderDetailHeader";
 import { useOrderContext } from "../contexts/OrderContext";
 
-const OrderDetailScreen = () => {
+const OrderDetailScreen = ({ id }) => {
   const [order, setOrder] = useState();
   const { getOrder } = useOrderContext();
 
   const navigation = useNavigation();
-  const route = useRoute();
-  const id = route.params?.id;
 
   useEffect(() => {
     getOrder(id).then(setOrder);
@@ -38,7 +36,7 @@ const OrderDetailScreen = () => {
         data={order.dishes}
         renderItem={({ item }) => <OrderItem dish={item} />}
         keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator="false"
+        showsVerticalScrollIndicator={false}
       />
       <Ionicons
         onPress={() => navigation.goBack()}
