@@ -4,12 +4,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useBasketContext } from "../contexts/BasketContext";
 
 const BasketItem = ({ basketDish }) => {
-  const { removeDishFromBasket, basketDishes } = useBasketContext();
-  const navigation = useNavigation();
+  const { removeDishFromBasket } = useBasketContext();
 
   const removeDish = async () => {
     await removeDishFromBasket(basketDish?.id);
-    // navigation.goBack();
   };
   //
   return (
