@@ -1,10 +1,19 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useBasketContext } from "../contexts/BasketContext";
 
 const BasketItem = ({ basketDish }) => {
+  const { removeDishFromBasket, basketDishes } = useBasketContext();
+  const navigation = useNavigation();
+
+  const removeDish = async () => {
+    await removeDishFromBasket(basketDish?.id);
+    // navigation.goBack();
+  };
   //
   return (
-    <View style={styles.quantityContainer}>
+    <TouchableOpacity onPress={removeDish} style={styles.quantityContainer}>
       <View style={styles.titleBox}>
         <Text style={styles.subTitle}>{basketDish?.quantity}</Text>
         <Text style={styles.title}>{basketDish?.Dish?.name}</Text>
@@ -12,7 +21,7 @@ const BasketItem = ({ basketDish }) => {
       <Text style={styles.priceTotal}>
         ${basketDish?.Dish?.price.toFixed(2)}{" "}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

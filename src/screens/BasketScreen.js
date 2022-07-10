@@ -8,6 +8,8 @@ import { useOrderContext } from "../contexts/OrderContext";
 
 const MenuDetailScreen = () => {
   const { restaurant, basketDishes, totalPrice } = useBasketContext();
+
+  // console.log("BasketDish---", basketDishes);
   const { createOrder } = useOrderContext();
   const navigation = useNavigation();
 
@@ -40,8 +42,16 @@ const MenuDetailScreen = () => {
           </Text>
         </View>
         <View style={styles.quantityContainer}>
-          <Text style={{ ...styles.priceTotal, fontWeight: "700" }}>Total</Text>
           <Text style={{ ...styles.priceTotal, fontWeight: "700" }}>
+            Delivery Fee
+          </Text>
+          <Text style={{ ...styles.priceTotal, fontWeight: "700" }}>
+            ${(restaurant?.deliveryFee).toFixed(2)}{" "}
+          </Text>
+        </View>
+        <View style={styles.quantityContainer}>
+          <Text style={{ ...styles.priceTotal, fontWeight: "700" }}>Total</Text>
+          <Text style={{ ...styles.priceTotal, fontWeight: "bold" }}>
             ${totalPrice.toFixed(2)}{" "}
           </Text>
         </View>

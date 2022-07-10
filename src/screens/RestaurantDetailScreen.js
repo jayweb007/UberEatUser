@@ -76,7 +76,7 @@ const RestaurantDetailScreen = () => {
         color="white"
         style={styles.arrow}
       />
-      {basket && (
+      {basket && basketDishes.length > 0 ? (
         <Pressable
           onPress={() => navigation.navigate("Basket")}
           style={styles.basketButton}
@@ -86,6 +86,8 @@ const RestaurantDetailScreen = () => {
           </Text>
           {/* <Text style={styles.price}>{basketDishes?.length}</Text> */}
         </Pressable>
+      ) : (
+        <></>
       )}
     </View>
   );

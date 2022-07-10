@@ -60,11 +60,25 @@ const BasketContextProvider = ({ children }) => {
     return response;
   };
 
+  const removeDishFromBasket = async (id) => {
+    // reduce Quantity by 1
+    const result = await DataStore.delete(BasketDish, (dish) =>
+      dish.id("eq", id)
+    );
+
+    //updating basketDishes for fast UI display
+    const updated = basketDishes.filter((res) => res.id !== id);
+    setBasketDishes(updated);
+
+    return result;
+  };
+
   //
   return (
     <BasketContext.Provider
       value={{
         addDishToBasket,
+        removeDishFromBasket,
         setRestaurant,
         restaurant,
         basketDishes,
